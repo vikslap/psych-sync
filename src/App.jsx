@@ -35,7 +35,7 @@ function pickBluffers(allIds) {
   return arr.slice(0, Math.max(0, count));
 }
 
-export default function App() {
+export default function App({ onBack }) {
   // ── State ──────────────────────────────────────────────────────────────────
   const [name, setName] = useState("");
   const [roomCode, setRoomCode] = useState("");
@@ -978,6 +978,15 @@ export default function App() {
   // HOME
   return (
     <Screen>
+      {onBack && (
+        <button
+          onClick={onBack}
+          className="fixed top-5 left-5 z-50 text-[10px] font-black uppercase tracking-widest
+                     text-white/20 hover:text-white/60 transition-all flex items-center gap-1.5"
+        >
+          ← Games
+        </button>
+      )}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
