@@ -225,11 +225,22 @@ export default function App({ onBack }) {
           .from("players")
           .update({ is_host: true })
           .eq("id", others[0].id);
-      } else {
-        await supabase.from("rooms").delete().eq("id", r.id);
       }
     }
     if (p?.id) await supabase.from("players").delete().eq("id", p.id);
+
+    // Check if room is now empty and clean up
+    const { data: remainingPlayers } = await supabase
+      .from("players")
+      .select("id")
+      .eq("room_id", r.id);
+    if (!remainingPlayers || remainingPlayers.length === 0) {
+      // Delete custom questions for this room
+      await supabase.from("questions").delete().eq("room_id", r.id);
+      // Delete the room itself
+      await supabase.from("rooms").delete().eq("id", r.id);
+    }
+
     localStorage.removeItem("psych_player_id");
     window.location.reload();
   };
