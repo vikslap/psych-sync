@@ -88,18 +88,18 @@ html.dark button {
 /* Light Mode Specific Styles */
 
 /* Ensure text is dark/visible in light mode */
-body:not(.dark) h1,
-body:not(.dark) h2,
-body:not(.dark) h3,
-body:not(.dark) h4,
-body:not(.dark) h5,
-body:not(.dark) h6 {
+html:not(.dark) h1,
+html:not(.dark) h2,
+html:not(.dark) h3,
+html:not(.dark) h4,
+html:not(.dark) h5,
+html:not(.dark) h6 {
   color: #1f2937;
 }
 
-body:not(.dark) p,
-body:not(.dark) span,
-body:not(.dark) a {
+html:not(.dark) p,
+html:not(.dark) span,
+html:not(.dark) a {
   color: #4b5563;
 }
 
