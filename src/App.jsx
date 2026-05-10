@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { supabase } from "./lib/supabase";
 import {
   PlayCircle,
@@ -19,6 +19,7 @@ import { motion, AnimatePresence } from "framer-motion";
 // ─── SCORING CONSTANTS ────────────────────────────────────────────────────────
 const POINTS_CORRECT_GUESS = 1000;
 const POINTS_PER_FOOL = 500;
+const HEARTBEAT_INTERVAL = 10000; // 10 seconds
 
 const nowPlusMs = (ms) => new Date(Date.now() + ms).toISOString();
 const pickRandom = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -61,6 +62,38 @@ export default function App({ onBack }) {
   const playersRef = useRef([]); // always-current players list
   const advancingRef = useRef(false); // guard against double phase-advances
   const settingsRef = useRef({ rounds, voteTime, revealTime, isAuto });
+  const heartbeatRef = useRef(null);
+
+  const stopHeartbeat = useCallback(() => {
+    if (heartbeatRef.current) {
+      clearInterval(heartbeatRef.current);
+      heartbeatRef.current = null;
+    }
+  }, []);
+
+  const startHeartbeat = useCallback(
+    (playerId) => {
+      const heartbeat = async () => {
+        const { error } = await supabase
+          .from("players")
+          .update({
+            last_seen: new Date().toISOString(),
+            connected: true,
+          })
+          .eq("id", playerId);
+
+        if (error) {
+          console.error("Heartbeat failed:", error);
+        }
+      };
+
+      stopHeartbeat();
+      heartbeat();
+      heartbeatRef.current = setInterval(heartbeat, HEARTBEAT_INTERVAL);
+      return heartbeatRef.current;
+    },
+    [stopHeartbeat],
+  );
 
   useEffect(() => {
     roomRef.current = room;
@@ -152,6 +185,26 @@ export default function App({ onBack }) {
       });
   }, []); // intentionally empty — runs once on mount
 
+  useEffect(() => {
+    if (!player?.id) return;
+
+    startHeartbeat(player.id);
+
+    const handleBeforeUnload = () => {
+      if (!playerRef.current?.id) return;
+      supabase
+        .from("players")
+        .update({ connected: false })
+        .eq("id", playerRef.current.id);
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+      stopHeartbeat();
+    };
+  }, [player?.id, startHeartbeat, stopHeartbeat]);
+
   // ── Realtime subscriptions ────────────────────────────────────────────────
   useEffect(() => {
     if (!room?.id) return;
@@ -216,6 +269,8 @@ export default function App({ onBack }) {
 
   const leaveRoom = async () => {
     if (!window.confirm("Leave this room?")) return;
+    stopHeartbeat();
+
     const p = playerRef.current;
     const r = roomRef.current;
     if (p?.is_host) {
@@ -227,7 +282,13 @@ export default function App({ onBack }) {
           .eq("id", others[0].id);
       }
     }
-    if (p?.id) await supabase.from("players").delete().eq("id", p.id);
+    if (p?.id) {
+      await supabase
+        .from("players")
+        .update({ connected: false })
+        .eq("id", p.id);
+      await supabase.from("players").delete().eq("id", p.id);
+    }
 
     // Check if room is now empty and clean up
     const { data: remainingPlayers } = await supabase
@@ -302,6 +363,8 @@ export default function App({ onBack }) {
           room_id: nr.id,
           is_host: true,
           score: 0,
+          connected: true,
+          last_seen: new Date().toISOString(),
         },
       ])
       .select()
@@ -328,6 +391,8 @@ export default function App({ onBack }) {
           name: name.toUpperCase(),
           room_id: tr.id,
           score: 0,
+          connected: true,
+          last_seen: new Date().toISOString(),
         },
       ])
       .select()
