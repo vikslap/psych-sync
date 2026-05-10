@@ -34,12 +34,12 @@ const GAMES = [
 export default function Landing({ onSelect }) {
   return (
     <div
-      className="w-full flex flex-col items-center py-16 px-6 relative bg-white dark:bg-slate-950 transition-colors"
+      className="w-full flex flex-col items-center py-16 px-6 relative bg-white transition-colors"
       style={{ fontFamily: "'Syne', sans-serif", minHeight: "100dvh" }}
     >
       <div className="pointer-events-none fixed inset-0">
-        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-150 h-100 bg-violet-600/10 dark:bg-violet-600/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-100 h-100 bg-cyan-500/5 dark:bg-cyan-500/5 rounded-full blur-[100px]" />
+        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-150 h-100 bg-violet-600/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-100 h-100 bg-cyan-500/5 rounded-full blur-[100px]" />
       </div>
 
       <style>{`
@@ -51,13 +51,13 @@ export default function Landing({ onSelect }) {
         animate={{ opacity: 1, y: 0 }}
         className="relative z-10 text-center mb-14"
       >
-        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-400 dark:text-violet-400 mb-3">
+        <p className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-400 mb-3">
           Game Night
         </p>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter leading-none">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 tracking-tighter leading-none">
           Pick a Game
         </h1>
-        <p className="text-xs sm:text-sm font-bold text-slate-600 dark:text-white/40 mt-3">
+        <p className="text-xs sm:text-sm font-bold text-slate-600 mt-3">
           Multiplayer party games for groups
         </p>
       </motion.div>
@@ -111,7 +111,7 @@ function GameTile({ game, index, onSelect }) {
       )}
 
       <div className="flex items-start justify-between gap-2 mb-1">
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white leading-none">
+        <h2 className="text-2xl font-black text-slate-900 leading-none">
           {game.title}
           {game.accentChar && (
             <span style={{ color: game.accent }}>{game.accentChar}</span>
@@ -142,7 +142,7 @@ function GameTile({ game, index, onSelect }) {
         {game.tagline}
       </p>
 
-      <p className="text-sm text-slate-600 dark:text-white/40 font-bold mb-5 leading-relaxed flex-1">
+      <p className="text-sm text-slate-600 font-bold mb-5 leading-relaxed flex-1">
         {game.description}
       </p>
 
@@ -150,7 +150,7 @@ function GameTile({ game, index, onSelect }) {
         {game.tags.map((tag) => (
           <span
             key={tag}
-            className="text-[9px] font-black uppercase tracking-wider px-2 py-1 rounded-lg bg-white/5 text-slate-600 dark:text-white/40"
+            className="text-[9px] font-black uppercase tracking-wider px-2 py-1 rounded-lg bg-white/5 text-slate-600"
           >
             {tag}
           </span>
@@ -173,7 +173,7 @@ function GameTile({ game, index, onSelect }) {
       ) : (
         <div
           className="w-full py-3 rounded-xl text-[10px] font-black uppercase tracking-widest
-                      text-slate-400 dark:text-white/40 border border-slate-300 dark:border-white/5 text-center bg-slate-100 dark:bg-white/3"
+                      text-slate-400 border border-slate-300 text-center bg-slate-100"
         >
           Coming Soon
         </div>

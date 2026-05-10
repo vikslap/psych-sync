@@ -8,23 +8,12 @@
   --text-secondary: #4b5563;
 }
 
-html.dark {
-  color-scheme: dark;
-  --bg-primary: #050810;
-  --bg-secondary: #0d0d14;
-  --text-primary: #ffffff;
-  --text-secondary: #e0e0e0;
-}
-
 body {
   margin: 0;
   padding: 0;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   overflow: hidden;
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
 }
 
 #root {
@@ -33,19 +22,4 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* Global dark mode text color overrides */
-html.dark h1,
-html.dark h2,
-html.dark h3,
-html.dark h4,
-html.dark h5,
-html.dark h6,
-html.dark p,
-html.dark span,
-html.dark div,
-html.dark a,
-html.dark button {
-  color: inherit;
 }

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Landing from "./Landing";
 import App from "./App";
-import { ThemeToggle } from "./components/ThemeToggle";
 
 export default function Root() {
   const [game, setGame] = useState(null);
@@ -12,7 +11,6 @@ export default function Root() {
 
   return (
     <>
-      <ThemeToggle />
       {game === "bluff" ? (
         <App onBack={() => setGame(null)} />
       ) : (
