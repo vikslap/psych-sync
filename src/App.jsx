@@ -110,7 +110,8 @@ export default function App({ onBack }) {
         .select("id, player_id")
         .eq("room_id", r.id);
       setSubmissions(subs ?? []);
-      if (myId && subs?.some((s) => s.player_id === myId)) setHasSubmitted(true);
+      if (myId && subs?.some((s) => s.player_id === myId))
+        setHasSubmitted(true);
     }
 
     if (r.status === "voting" || r.status === "reveal") {
@@ -208,7 +209,7 @@ export default function App({ onBack }) {
       clearTimeout(initTimer);
       supabase.removeChannel(channel);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [room?.id]); // only re-subscribe when room ID changes — intentional
 
   // ─── ACTIONS (plain async fns reading from refs — no useCallback needed) ──
@@ -220,7 +221,10 @@ export default function App({ onBack }) {
     if (p?.is_host) {
       const others = playersRef.current.filter((pl) => pl.id !== p.id);
       if (others.length > 0) {
-        await supabase.from("players").update({ is_host: true }).eq("id", others[0].id);
+        await supabase
+          .from("players")
+          .update({ is_host: true })
+          .eq("id", others[0].id);
       } else {
         await supabase.from("rooms").delete().eq("id", r.id);
       }
@@ -442,14 +446,19 @@ export default function App({ onBack }) {
     const ps = playersRef.current;
     if (selectedVote || !r || !p) return;
     setSelectedVote(id);
-    await supabase.from("players").update({ last_vote_id: id }).eq("id", p.id).is("last_vote_id", null);
+    await supabase
+      .from("players")
+      .update({ last_vote_id: id })
+      .eq("id", p.id)
+      .is("last_vote_id", null);
     if (p.is_host) {
       const { data: v } = await supabase
         .from("players")
         .select("last_vote_id")
         .eq("room_id", r.id);
       const voterCount = ps.filter((p) => !p.is_active_bluffer).length;
-      if (v?.filter((x) => x.last_vote_id).length >= voterCount) revealResults();
+      if (v?.filter((x) => x.last_vote_id).length >= voterCount)
+        revealResults();
     }
   };
 
@@ -510,7 +519,9 @@ export default function App({ onBack }) {
         if (!Array.isArray(json)) throw new Error();
         const valid = json.filter((q) => q?.content && q?.answer);
         if (!valid.length)
-          return alert("No valid questions found. Expected [{content, answer}]");
+          return alert(
+            "No valid questions found. Expected [{content, answer}]",
+          );
         const formatted = valid.map((q) => ({
           content: q.content,
           answer: String(q.answer).toUpperCase(),
@@ -568,7 +579,8 @@ export default function App({ onBack }) {
     const r = roomRef.current;
     if (r?.status !== "voting" || !playerRef.current?.is_host) return;
     const voters = players.filter((p) => !p.is_active_bluffer);
-    if (voters.length > 0 && voters.every((p) => p.last_vote_id)) revealResults();
+    if (voters.length > 0 && voters.every((p) => p.last_vote_id))
+      revealResults();
   }, [players]);
 
   // ─── VIEWS ───────────────────────────────────────────────────────────────
@@ -607,7 +619,7 @@ export default function App({ onBack }) {
                         : "bg-white/3 border-white/5"
                     }`}
                 >
-                  <span className="text-xs font-bold uppercase tracking-wide text-white/80">
+                  <span className="text-xs font-bold uppercase tracking-wide text-slate-900 dark:text-white/80">
                     {["🥇", "🥈", "🥉"][i] ?? `#${i + 1}`} {p.name}
                   </span>
                   <span className="font-black text-violet-400 tabular-nums">
@@ -622,12 +634,14 @@ export default function App({ onBack }) {
             <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-1">
               ✓ Correct Answer
             </p>
-            <p className="text-xl font-bold text-white">{question?.answer}</p>
+            <p className="text-xl font-bold text-slate-900 dark:text-white">
+              {question?.answer}
+            </p>
           </div>
 
           {submissions.filter((s) => !s.is_truth).length > 0 && (
             <div className="space-y-2 mb-6">
-              <p className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/30 mb-2">
                 Bluffs
               </p>
               {submissions
@@ -644,10 +658,10 @@ export default function App({ onBack }) {
                                bg-rose-500/5 border border-rose-500/10 rounded-xl"
                     >
                       <div>
-                        <p className="text-sm font-bold text-white/80">
+                        <p className="text-sm font-bold text-slate-900 dark:text-white/80">
                           {s.content}
                         </p>
-                        <p className="text-[10px] text-white/30 mt-0.5">
+                        <p className="text-[10px] text-slate-500 dark:text-white/30 mt-0.5">
                           by {author?.name ?? "?"}
                         </p>
                       </div>
@@ -679,7 +693,7 @@ export default function App({ onBack }) {
             </button>
           )}
           {!player?.is_host && !room.auto_advance && (
-            <p className="text-center text-[10px] font-black uppercase tracking-widest text-white/20 animate-pulse">
+            <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/20 animate-pulse">
               Waiting for host…
             </p>
           )}
@@ -700,10 +714,10 @@ export default function App({ onBack }) {
           className="w-full max-w-md space-y-5"
         >
           <div className="text-center mb-2">
-            <p className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-3">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/30 mb-3">
               The Question
             </p>
-            <h2 className="text-2xl font-black italic leading-snug text-white">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-black italic leading-snug text-white">
               "{question?.content}"
             </h2>
           </div>
@@ -720,7 +734,7 @@ export default function App({ onBack }) {
             </div>
           ) : (
             <div className="space-y-3">
-              <p className="text-[10px] font-black uppercase tracking-widest text-white/30 text-center">
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/30 text-center">
                 Spot the truth
               </p>
               {submissions.map((s, idx) => (
@@ -733,7 +747,7 @@ export default function App({ onBack }) {
                     ${
                       selectedVote === s.id
                         ? "bg-violet-600/20 border-violet-500 text-white"
-                        : "bg-white/3 border-white/10 hover:bg-white/[0.07] text-white/80"
+                        : "bg-white/3 border-white/10 hover:bg-white/[0.07] text-slate-900 dark:text-white/80"
                     }
                     ${selectedVote && selectedVote !== s.id ? "opacity-40" : ""}`}
                 >
@@ -776,10 +790,10 @@ export default function App({ onBack }) {
           animate={{ opacity: 1, scale: 1 }}
           className="glass-card w-full max-w-md"
         >
-          <p className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-4">
+          <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/30 mb-4">
             Round {room.current_round} of {room.max_rounds}
           </p>
-          <h2 className="text-2xl font-black leading-tight text-white mb-8">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-black leading-tight text-white mb-8">
             {question?.content}
           </h2>
 
@@ -790,9 +804,9 @@ export default function App({ onBack }) {
                   🎭 You're a bluffer — write a convincing lie
                 </p>
                 <input
-                  className="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-center
-                             text-white font-bold text-lg outline-none focus:border-violet-500
-                             transition-colors uppercase placeholder:text-white/20"
+                  className="w-full bg-white/5 border border-white/10 p-3 sm:p-4 rounded-xl text-center
+                               text-base sm:text-lg font-bold text-white outline-none focus:border-violet-500
+                               transition-colors uppercase placeholder:text-white/20"
                   placeholder="YOUR LIE HERE…"
                   value={bluff}
                   onChange={(e) => setBluff(e.target.value)}
@@ -812,14 +826,14 @@ export default function App({ onBack }) {
                 <p className="font-black uppercase tracking-widest text-sm text-emerald-400">
                   Bluff Recorded
                 </p>
-                <p className="text-xs text-white/30 mt-1">
+                <p className="text-xs text-slate-500 dark:text-white/30 mt-1">
                   Waiting for others…
                 </p>
               </div>
             )
           ) : (
             <div className="text-center py-6 space-y-4">
-              <p className="text-white/40 text-sm italic">
+              <p className="text-slate-600 dark:text-white/40 text-sm italic">
                 Bluffers are typing…
               </p>
               <div className="inline-flex items-center gap-2 bg-black/20 px-5 py-3 rounded-2xl border border-white/5">
@@ -931,7 +945,7 @@ export default function App({ onBack }) {
             </div>
           )}
 
-          <div className="text-[9px] font-bold uppercase tracking-widest text-white/20 text-center mb-4">
+          <div className="text-[9px] font-bold uppercase tracking-widest text-slate-500 dark:text-white/20 text-center mb-4">
             ≤ 5 players → everyone bluffs · &gt; 5 → 5 random bluffers / round
           </div>
 
@@ -942,8 +956,8 @@ export default function App({ onBack }) {
                 className={`text-[10px] font-bold uppercase px-3 py-2 rounded-xl text-center truncate
                   ${
                     p.id === player?.id
-                      ? "bg-violet-500/20 border border-violet-500/30 text-violet-300"
-                      : "bg-white/4 border border-white/5 text-white/60"
+                      ? "bg-violet-500/20 border border-violet-500/30 text-violet-600 dark:text-violet-300"
+                      : "bg-slate-100 dark:bg-white/4 border border-slate-300 dark:border-white/5 text-slate-700 dark:text-white/60"
                   }`}
               >
                 {p.name} {p.is_host && "👑"}
@@ -957,14 +971,14 @@ export default function App({ onBack }) {
                 <PlayCircle size={16} /> Start Game
               </button>
             ) : (
-              <p className="text-center text-[10px] font-black uppercase tracking-widest text-white/20 animate-pulse py-2">
+              <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/20 animate-pulse py-2">
                 Waiting for host to start…
               </p>
             )}
             <button
               onClick={leaveRoom}
-              className="w-full py-3 bg-white/3 hover:bg-white/[0.07] border border-white/5 rounded-xl
-                         font-black uppercase text-[10px] tracking-widest text-white/30 hover:text-white/60
+              className="w-full py-3 bg-slate-100 dark:bg-white/3 hover:bg-slate-200 dark:hover:bg-white/[0.07] border border-slate-300 dark:border-white/5 rounded-xl
+                         font-black uppercase text-[10px] tracking-widest text-slate-600 dark:text-white/30 hover:text-slate-900 dark:hover:text-white/60
                          flex items-center justify-center gap-2 transition-all"
             >
               <LogOut size={12} /> Leave Room
@@ -982,7 +996,7 @@ export default function App({ onBack }) {
         <button
           onClick={onBack}
           className="fixed top-5 left-5 z-50 text-[10px] font-black uppercase tracking-widest
-                     text-white/20 hover:text-white/60 transition-all flex items-center gap-1.5"
+                     text-slate-500 dark:text-white/20 hover:text-slate-900 dark:hover:text-white/60 transition-all flex items-center gap-1.5"
         >
           ← Games
         </button>
@@ -993,15 +1007,15 @@ export default function App({ onBack }) {
         transition={{ type: "spring", stiffness: 180, damping: 22 }}
         className="glass-card w-full max-w-md text-center"
       >
-        <h1 className="text-7xl font-black italic tracking-tighter leading-none mb-2 select-none">
-          Psych<span className="text-violet-500">!</span>
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-none mb-2 select-none">
+          Bluff<span className="text-violet-500">!</span>
         </h1>
         <p className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-10">
           Bluff · Guess · Outsmart
         </p>
         <input
           className="w-full bg-transparent border-b-2 border-white/10 pb-3 mb-8 text-center
-                     text-3xl font-black uppercase text-white outline-none focus:border-violet-500
+                     text-2xl sm:text-3xl font-black uppercase text-white outline-none focus:border-violet-500
                      transition-colors placeholder:text-white/15"
           placeholder="YOUR NAME"
           value={name}
@@ -1041,7 +1055,7 @@ function TimerUI({ timeLeft }) {
     <motion.div
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-[#0d0d14]/80
+      className="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-slate-900/80 dark:bg-[#0d0d14]/80
                  backdrop-blur-xl border border-white/10 px-5 py-2 rounded-full
                  flex items-center gap-3 shadow-xl"
     >
@@ -1052,7 +1066,7 @@ function TimerUI({ timeLeft }) {
         }
       />
       <span
-        className={`font-mono font-black text-lg tabular-nums ${timeLeft < 10 ? "text-rose-400" : "text-white"}`}
+        className={`font-mono font-black text-lg tabular-nums ${timeLeft < 10 ? "text-rose-400" : "text-slate-900 dark:text-white"}`}
       >
         {timeLeft}s
       </span>
@@ -1075,7 +1089,7 @@ function AbortBtn({ isHost, onAbort }) {
 // ─── SHARED PRIMITIVES ────────────────────────────────────────────────────────
 function Screen({ children }) {
   return (
-    <div className="min-h-screen bg-[#07070f] flex flex-col items-center justify-center p-5 relative overflow-hidden">
+    <div className="min-h-screen bg-white dark:bg-[#07070f] flex flex-col items-center justify-center p-5 relative overflow-hidden transition-colors">
       <div className="pointer-events-none fixed inset-0">
         <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-150 h-100 bg-violet-600/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-100 h-100 bg-cyan-500/5 rounded-full blur-[100px]" />

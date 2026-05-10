@@ -1,0 +1,165 @@
+/* Dark Mode Overrides */
+
+/* Landing page */
+html.dark .landing-container {
+  background-color: #050810;
+  color: #ffffff;
+}
+
+html.dark h1 {
+  color: #ffffff;
+}
+
+html.dark h2 {
+  color: #ffffff;
+}
+
+html.dark p {
+  color: #ffffff;
+}
+
+html.dark .game-tile {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+html.dark .game-title {
+  color: #ffffff;
+}
+
+html.dark .game-description {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+html.dark .game-tag {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* App component */
+html.dark .app-container {
+  background-color: #050810;
+}
+
+html.dark .text-white {
+  color: #ffffff;
+}
+
+html.dark .text-slate-900 {
+  color: #ffffff;
+}
+
+html.dark .text-slate-700 {
+  color: #e0e0e0;
+}
+
+html.dark .text-slate-600 {
+  color: #a0a0a0;
+}
+
+html.dark .text-slate-500 {
+  color: #808080;
+}
+
+html.dark .bg-white {
+  background-color: #050810;
+}
+
+html.dark .bg-slate-900 {
+  background-color: #0d0d14;
+}
+
+html.dark .bg-slate-950 {
+  background-color: #050810;
+}
+
+/* Buttons and inputs */
+html.dark input,
+html.dark textarea {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+html.dark button {
+  color: #ffffff;
+}
+
+/* Light Mode Specific Styles */
+
+/* Ensure text is dark/visible in light mode */
+body:not(.dark) h1,
+body:not(.dark) h2,
+body:not(.dark) h3,
+body:not(.dark) h4,
+body:not(.dark) h5,
+body:not(.dark) h6 {
+  color: #1f2937;
+}
+
+body:not(.dark) p,
+body:not(.dark) span,
+body:not(.dark) a {
+  color: #4b5563;
+}
+
+/* Light mode text color classes */
+html:not(.dark) .text-white {
+  color: #1f2937;
+}
+
+html:not(.dark) .text-white\/80,
+html:not(.dark) .text-white\/60,
+html:not(.dark) .text-white\/30 {
+  color: #4b5563;
+}
+
+html:not(.dark) .text-slate-900 {
+  color: #1f2937;
+}
+
+html:not(.dark) .text-slate-700 {
+  color: #374151;
+}
+
+html:not(.dark) .text-slate-600 {
+  color: #4b5563;
+}
+
+html:not(.dark) .text-slate-500 {
+  color: #6b7280;
+}
+
+/* Light mode background opacity adjustments */
+html:not(.dark) .bg-white\/5,
+html:not(.dark) .bg-white\/3,
+html:not(.dark) .bg-black\/20,
+html:not(.dark) .bg-black\/30,
+html:not(.dark) .bg-black\/40 {
+  background-color: #f3f4f6;
+}
+
+/* Light mode border colors */
+html:not(.dark) .border-white\/10,
+html:not(.dark) .border-white\/5 {
+  border-color: #d1d5db;
+}
+
+/* Light mode placeholder text */
+html:not(.dark) input::placeholder,
+html:not(.dark) textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Light mode inputs */
+html:not(.dark) input,
+html:not(.dark) textarea {
+  background-color: #ffffff;
+  border-color: #d1d5db;
+  color: #1f2937;
+}
+
+html:not(.dark) input:focus,
+html:not(.dark) textarea:focus {
+  border-color: #7c3aed;
+}
