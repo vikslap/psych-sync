@@ -82,13 +82,10 @@ function GameTile({ game, index, onSelect }) {
         stiffness: 180,
         damping: 22,
       }}
-      className="w-full sm:w-80 md:w-72 p-5 sm:p-7 flex flex-col dark:bg-opacity-100"
+      className={`w-full sm:w-80 md:w-72 p-5 sm:p-7 flex flex-col game-tile ${game.live ? "game-tile-live" : "game-tile-soon"}`}
       style={{
-        background: "rgba(255,255,255,0.08)",
         backdropFilter: "blur(24px)",
-        border: "1px solid rgba(255,255,255,0.07)",
         borderRadius: "1.5rem",
-        boxShadow: "0 0 0 1px rgba(0,0,0,0.5), 0 32px 64px rgba(0,0,0,0.4)",
         opacity: game.live ? 1 : 0.45,
         filter: game.live ? "none" : "grayscale(1)",
       }}

@@ -18,9 +18,37 @@ html.dark p {
   color: #ffffff;
 }
 
+/* Light mode game tiles (default) */
+.game-tile {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.5),
+    0 32px 64px rgba(0, 0, 0, 0.4);
+}
+
+.game-tile-live {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.game-tile-soon {
+  background: rgba(255, 255, 255, 0.05);
+}
+
 html.dark .game-tile {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 0, 0, 0.3);
   border-color: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 32px 64px rgba(0, 0, 0, 0.6);
+}
+
+html.dark .game-tile-live {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+html.dark .game-tile-soon {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 html.dark .game-title {
@@ -83,83 +111,4 @@ html.dark textarea {
 
 html.dark button {
   color: #ffffff;
-}
-
-/* Light Mode Specific Styles */
-
-/* Ensure text is dark/visible in light mode */
-html:not(.dark) h1,
-html:not(.dark) h2,
-html:not(.dark) h3,
-html:not(.dark) h4,
-html:not(.dark) h5,
-html:not(.dark) h6 {
-  color: #1f2937;
-}
-
-html:not(.dark) p,
-html:not(.dark) span,
-html:not(.dark) a {
-  color: #4b5563;
-}
-
-/* Light mode text color classes */
-html:not(.dark) .text-white {
-  color: #1f2937;
-}
-
-html:not(.dark) .text-white\/80,
-html:not(.dark) .text-white\/60,
-html:not(.dark) .text-white\/30 {
-  color: #4b5563;
-}
-
-html:not(.dark) .text-slate-900 {
-  color: #1f2937;
-}
-
-html:not(.dark) .text-slate-700 {
-  color: #374151;
-}
-
-html:not(.dark) .text-slate-600 {
-  color: #4b5563;
-}
-
-html:not(.dark) .text-slate-500 {
-  color: #6b7280;
-}
-
-/* Light mode background opacity adjustments */
-html:not(.dark) .bg-white\/5,
-html:not(.dark) .bg-white\/3,
-html:not(.dark) .bg-black\/20,
-html:not(.dark) .bg-black\/30,
-html:not(.dark) .bg-black\/40 {
-  background-color: #f3f4f6;
-}
-
-/* Light mode border colors */
-html:not(.dark) .border-white\/10,
-html:not(.dark) .border-white\/5 {
-  border-color: #d1d5db;
-}
-
-/* Light mode placeholder text */
-html:not(.dark) input::placeholder,
-html:not(.dark) textarea::placeholder {
-  color: #9ca3af;
-}
-
-/* Light mode inputs */
-html:not(.dark) input,
-html:not(.dark) textarea {
-  background-color: #ffffff;
-  border-color: #d1d5db;
-  color: #1f2937;
-}
-
-html:not(.dark) input:focus,
-html:not(.dark) textarea:focus {
-  border-color: #7c3aed;
 }
