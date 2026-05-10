@@ -641,7 +641,7 @@ export default function App({ onBack }) {
 
           {submissions.filter((s) => !s.is_truth).length > 0 && (
             <div className="space-y-2 mb-6">
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/30 mb-2">
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/40 mb-2">
                 Bluffs
               </p>
               {submissions
@@ -661,7 +661,7 @@ export default function App({ onBack }) {
                         <p className="text-sm font-bold text-slate-900 dark:text-white/80">
                           {s.content}
                         </p>
-                        <p className="text-[10px] text-slate-500 dark:text-white/30 mt-0.5">
+                        <p className="text-[10px] text-slate-500 dark:text-white/40 mt-0.5">
                           by {author?.name ?? "?"}
                         </p>
                       </div>
@@ -693,7 +693,7 @@ export default function App({ onBack }) {
             </button>
           )}
           {!player?.is_host && !room.auto_advance && (
-            <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/20 animate-pulse">
+            <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/40 animate-pulse">
               Waiting for host…
             </p>
           )}
@@ -714,7 +714,7 @@ export default function App({ onBack }) {
           className="w-full max-w-md space-y-5"
         >
           <div className="text-center mb-2">
-            <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/30 mb-3">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/40 mb-3">
               The Question
             </p>
             <h2 className="text-lg sm:text-xl md:text-2xl font-black italic leading-snug text-white">
@@ -728,13 +728,13 @@ export default function App({ onBack }) {
               <p className="font-black uppercase tracking-widest text-sm text-white/60">
                 You're a bluffer — sit tight!
               </p>
-              <p className="text-xs text-white/30 mt-1">
+              <p className="text-xs text-white/40 mt-1">
                 Did your answer fool them? 😈
               </p>
             </div>
           ) : (
             <div className="space-y-3">
-              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/30 text-center">
+              <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/40 text-center">
                 Spot the truth
               </p>
               {submissions.map((s, idx) => (
@@ -751,7 +751,7 @@ export default function App({ onBack }) {
                     }
                     ${selectedVote && selectedVote !== s.id ? "opacity-40" : ""}`}
                 >
-                  <span className="text-[10px] font-black uppercase tracking-wider text-white/30 mr-3">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-white/40 mr-3">
                     {String.fromCharCode(65 + idx)}
                   </span>
                   {s.content}
@@ -767,7 +767,7 @@ export default function App({ onBack }) {
           )}
 
           {selectedVote && (
-            <p className="text-center text-[10px] font-black uppercase tracking-widest text-white/25 animate-pulse">
+            <p className="text-center text-[10px] font-black uppercase tracking-widest text-white/40 animate-pulse">
               Vote locked · Waiting for others…
             </p>
           )}
@@ -790,7 +790,7 @@ export default function App({ onBack }) {
           animate={{ opacity: 1, scale: 1 }}
           className="glass-card w-full max-w-md"
         >
-          <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/30 mb-4">
+          <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-white/40 mb-4">
             Round {room.current_round} of {room.max_rounds}
           </p>
           <h2 className="text-lg sm:text-xl md:text-2xl font-black leading-tight text-white mb-8">
@@ -806,7 +806,7 @@ export default function App({ onBack }) {
                 <input
                   className="w-full bg-white/5 border border-white/10 p-3 sm:p-4 rounded-xl text-center
                                text-base sm:text-lg font-bold text-white outline-none focus:border-violet-500
-                               transition-colors uppercase placeholder:text-white/20"
+                               transition-colors uppercase placeholder:text-white/40"
                   placeholder="YOUR LIE HERE…"
                   value={bluff}
                   onChange={(e) => setBluff(e.target.value)}
@@ -826,7 +826,7 @@ export default function App({ onBack }) {
                 <p className="font-black uppercase tracking-widest text-sm text-emerald-400">
                   Bluff Recorded
                 </p>
-                <p className="text-xs text-slate-500 dark:text-white/30 mt-1">
+                <p className="text-xs text-slate-500 dark:text-white/40 mt-1">
                   Waiting for others…
                 </p>
               </div>
@@ -837,14 +837,14 @@ export default function App({ onBack }) {
                 Bluffers are typing…
               </p>
               <div className="inline-flex items-center gap-2 bg-black/20 px-5 py-3 rounded-2xl border border-white/5">
-                <span className="text-[10px] font-black uppercase text-white/30">
+                <span className="text-[10px] font-black uppercase text-white/40">
                   Bluffs in:
                 </span>
                 <span className="font-black text-xl text-white tabular-nums">
                   {bluffsIn} / {bluffsNeeded}
                 </span>
               </div>
-              <p className="text-[10px] text-white/25 uppercase tracking-widest">
+              <p className="text-[10px] text-white/40 uppercase tracking-widest">
                 You'll vote once all bluffs are in
               </p>
             </div>
@@ -869,7 +869,7 @@ export default function App({ onBack }) {
           className="glass-card w-full max-w-sm relative z-10"
         >
           <div className="text-center mb-6">
-            <p className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-1">
+            <p className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-1">
               Room Code
             </p>
             <p className="text-5xl font-black tracking-widest text-white">
@@ -945,7 +945,7 @@ export default function App({ onBack }) {
             </div>
           )}
 
-          <div className="text-[9px] font-bold uppercase tracking-widest text-slate-500 dark:text-white/20 text-center mb-4">
+          <div className="text-[9px] font-bold uppercase tracking-widest text-slate-500 dark:text-white/40 text-center mb-4">
             ≤ 5 players → everyone bluffs · &gt; 5 → 5 random bluffers / round
           </div>
 
@@ -971,14 +971,14 @@ export default function App({ onBack }) {
                 <PlayCircle size={16} /> Start Game
               </button>
             ) : (
-              <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/20 animate-pulse py-2">
+              <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-white/40 animate-pulse py-2">
                 Waiting for host to start…
               </p>
             )}
             <button
               onClick={leaveRoom}
               className="w-full py-3 bg-slate-100 dark:bg-white/3 hover:bg-slate-200 dark:hover:bg-white/[0.07] border border-slate-300 dark:border-white/5 rounded-xl
-                         font-black uppercase text-[10px] tracking-widest text-slate-600 dark:text-white/30 hover:text-slate-900 dark:hover:text-white/60
+                         font-black uppercase text-[10px] tracking-widest text-slate-600 dark:text-white/40 hover:text-slate-900 dark:hover:text-white/60
                          flex items-center justify-center gap-2 transition-all"
             >
               <LogOut size={12} /> Leave Room
@@ -996,7 +996,7 @@ export default function App({ onBack }) {
         <button
           onClick={onBack}
           className="fixed top-5 left-5 z-50 text-[10px] font-black uppercase tracking-widest
-                     text-slate-500 dark:text-white/20 hover:text-slate-900 dark:hover:text-white/60 transition-all flex items-center gap-1.5"
+                     text-slate-500 dark:text-white/40 hover:text-slate-900 dark:hover:text-white/60 transition-all flex items-center gap-1.5"
         >
           ← Games
         </button>
@@ -1010,7 +1010,7 @@ export default function App({ onBack }) {
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-none mb-2 select-none">
           Bluff<span className="text-violet-500">!</span>
         </h1>
-        <p className="text-[10px] font-black uppercase tracking-widest text-white/30 mb-10">
+        <p className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-10">
           Bluff · Guess · Outsmart
         </p>
         <input
@@ -1030,7 +1030,7 @@ export default function App({ onBack }) {
             <input
               className="bg-black/40 border border-white/10 p-3 rounded-xl text-center font-mono
                          text-xl font-bold text-white outline-none focus:border-white/30
-                         transition-colors uppercase placeholder:text-white/20"
+                         transition-colors uppercase placeholder:text-white/40"
               placeholder="0000"
               maxLength={4}
               value={roomCode}

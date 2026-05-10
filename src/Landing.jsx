@@ -57,7 +57,7 @@ export default function Landing({ onSelect }) {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tighter leading-none">
           Pick a Game
         </h1>
-        <p className="text-xs sm:text-sm font-bold text-slate-600 dark:text-white/30 mt-3">
+        <p className="text-xs sm:text-sm font-bold text-slate-600 dark:text-white/40 mt-3">
           Multiplayer party games for groups
         </p>
       </motion.div>
@@ -84,7 +84,7 @@ function GameTile({ game, index, onSelect }) {
       }}
       className="w-full sm:w-80 md:w-72 p-5 sm:p-7 flex flex-col dark:bg-opacity-100"
       style={{
-        background: "rgba(255,255,255,0.03)",
+        background: "rgba(255,255,255,0.08)",
         backdropFilter: "blur(24px)",
         border: "1px solid rgba(255,255,255,0.07)",
         borderRadius: "1.5rem",
@@ -153,7 +153,7 @@ function GameTile({ game, index, onSelect }) {
         {game.tags.map((tag) => (
           <span
             key={tag}
-            className="text-[9px] font-black uppercase tracking-wider px-2 py-1 rounded-lg bg-white/5 text-slate-600 dark:text-white/30"
+            className="text-[9px] font-black uppercase tracking-wider px-2 py-1 rounded-lg bg-white/5 text-slate-600 dark:text-white/40"
           >
             {tag}
           </span>
@@ -176,7 +176,7 @@ function GameTile({ game, index, onSelect }) {
       ) : (
         <div
           className="w-full py-3 rounded-xl text-[10px] font-black uppercase tracking-widest
-                      text-slate-400 dark:text-white/20 border border-slate-300 dark:border-white/5 text-center bg-slate-100 dark:bg-white/3"
+                      text-slate-400 dark:text-white/40 border border-slate-300 dark:border-white/5 text-center bg-slate-100 dark:bg-white/3"
         >
           Coming Soon
         </div>
