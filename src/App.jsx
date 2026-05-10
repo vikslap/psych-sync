@@ -808,6 +808,7 @@ export default function App({ onBack }) {
                                text-base sm:text-lg font-bold text-white outline-none focus:border-violet-500
                                transition-colors uppercase placeholder:text-white/40"
                   placeholder="YOUR LIE HERE…"
+                  aria-label="Enter your bluff answer"
                   value={bluff}
                   onChange={(e) => setBluff(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && submitBluff()}
@@ -888,6 +889,7 @@ export default function App({ onBack }) {
                   onChange={setRounds}
                   min={1}
                   max={20}
+                  ariaLabel="Number of rounds"
                 />
               </Row>
               <Row label="Vote Time (s)">
@@ -896,6 +898,7 @@ export default function App({ onBack }) {
                   onChange={setVoteTime}
                   min={10}
                   max={120}
+                  ariaLabel="Vote time in seconds"
                 />
               </Row>
               <Row label="Reveal Time (s)">
@@ -904,6 +907,7 @@ export default function App({ onBack }) {
                   onChange={setRevealTime}
                   min={5}
                   max={60}
+                  ariaLabel="Reveal time in seconds"
                 />
               </Row>
               <div
@@ -1018,6 +1022,7 @@ export default function App({ onBack }) {
                      text-2xl sm:text-3xl font-black uppercase text-white outline-none focus:border-violet-500
                      transition-colors placeholder:text-white/15"
           placeholder="YOUR NAME"
+          aria-label="Enter your player name"
           value={name}
           onChange={(e) => setName(e.target.value.toUpperCase())}
           maxLength={16}
@@ -1032,6 +1037,7 @@ export default function App({ onBack }) {
                          text-xl font-bold text-white outline-none focus:border-white/30
                          transition-colors uppercase placeholder:text-white/40"
               placeholder="0000"
+              aria-label="Enter room code to join"
               maxLength={4}
               value={roomCode}
               onChange={(e) => setRoomCode(e.target.value)}
@@ -1129,12 +1135,13 @@ function Row({ label, children }) {
   );
 }
 
-function NumInput({ value, onChange, min = 1, max = 99 }) {
+function NumInput({ value, onChange, min = 1, max = 99, ariaLabel }) {
   return (
     <input
       type="number"
       min={min}
       max={max}
+      aria-label={ariaLabel}
       className="bg-white/10 w-14 text-center rounded-lg p-1 outline-none text-white font-black
                  text-sm border border-white/10 focus:border-white/30 transition-colors"
       value={value}

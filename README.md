@@ -1,16 +1,76 @@
-# React + Vite
+# Bluff!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A multiplayer party game where players write fake answers to real trivia questions and try to fool their friends. The best bluffer wins!
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Real-time multiplayer**: Join rooms and play with friends in real-time
+- **Trivia-based gameplay**: Answer real trivia questions with convincing lies
+- **Dark/Light mode**: Toggle between themes with system preference detection
+- **Mobile responsive**: Optimized for both desktop and mobile devices
+- **Custom decks**: Upload your own question sets via JSON
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend**: React 19 + Vite
+- **Styling**: Tailwind CSS
+- **Backend**: Supabase (Realtime, Database)
+- **Icons**: Lucide React
+- **Animations**: Framer Motion
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Set up environment variables:
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   Fill in your Supabase URL and anon key.
+
+4. Start development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Build for production:
+   ```bash
+   npm run build
+   ```
+
+## Environment Variables
+
+- `VITE_SUPABASE_URL`: Your Supabase project URL
+- `VITE_SUPABASE_ANON_KEY`: Your Supabase anonymous key
+
+## Game Rules
+
+1. **Host creates a room** and sets game parameters
+2. **Players join** using the room code
+3. **One player is randomly selected as the "bluffer"** each round
+4. **The bluffer writes a convincing lie** to the trivia question
+5. **Other players write the real answer**
+6. **Everyone votes** on which answer they think is fake
+7. **Points are awarded** for fooling others and correctly identifying lies
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run tests and linting:
+   ```bash
+   npm run lint
+   npm run build
+   ```
+5. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details
