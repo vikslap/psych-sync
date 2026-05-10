@@ -599,7 +599,7 @@ export default function App({ onBack }) {
         >
           <div className="flex items-center gap-2 mb-6">
             <Trophy size={22} className="text-amber-400" />
-            <h2 className="text-sm font-black uppercase tracking-widest text-white/60">
+            <h2 className="text-sm font-black uppercase tracking-widest text-slate-700">
               Round {room.current_round} · Scores
             </h2>
           </div>
@@ -717,18 +717,18 @@ export default function App({ onBack }) {
             <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-3">
               The Question
             </p>
-            <h2 className="text-lg sm:text-xl md:text-2xl font-black italic leading-snug text-white">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-black italic leading-snug text-slate-900">
               "{question?.content}"
             </h2>
           </div>
 
           {player?.is_active_bluffer ? (
-            <div className="glass-card text-center py-8">
+            <div className="glass-card text-center py-8 bg-slate-50 border-slate-200 text-slate-900">
               <Zap size={32} className="mx-auto text-violet-400 mb-3" />
-              <p className="font-black uppercase tracking-widest text-sm text-white/60">
+              <p className="font-black uppercase tracking-widest text-sm text-slate-700">
                 You're a bluffer — sit tight!
               </p>
-              <p className="text-xs text-white/40 mt-1">
+              <p className="text-xs text-slate-500 mt-1">
                 Did your answer fool them? 😈
               </p>
             </div>
@@ -747,11 +747,11 @@ export default function App({ onBack }) {
                     ${
                       selectedVote === s.id
                         ? "bg-violet-600/20 border-violet-500 text-white"
-                        : "bg-white/3 border-white/10 hover:bg-white/[0.07] text-slate-900"
+                        : "bg-slate-100 border-slate-200 hover:bg-slate-200 text-slate-900"
                     }
                     ${selectedVote && selectedVote !== s.id ? "opacity-40" : ""}`}
                 >
-                  <span className="text-[10px] font-black uppercase tracking-wider text-white/40 mr-3">
+                  <span className="text-[10px] font-black uppercase tracking-wider text-slate-500 mr-3">
                     {String.fromCharCode(65 + idx)}
                   </span>
                   {s.content}
@@ -767,7 +767,7 @@ export default function App({ onBack }) {
           )}
 
           {selectedVote && (
-            <p className="text-center text-[10px] font-black uppercase tracking-widest text-white/40 animate-pulse">
+            <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-500 animate-pulse">
               Vote locked · Waiting for others…
             </p>
           )}
@@ -793,7 +793,7 @@ export default function App({ onBack }) {
           <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-4">
             Round {room.current_round} of {room.max_rounds}
           </p>
-          <h2 className="text-lg sm:text-xl md:text-2xl font-black leading-tight text-white mb-8">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-black leading-tight text-slate-900 mb-8">
             {question?.content}
           </h2>
 
@@ -804,9 +804,9 @@ export default function App({ onBack }) {
                   🎭 You're a bluffer — write a convincing lie
                 </p>
                 <input
-                  className="w-full bg-white/5 border border-white/10 p-3 sm:p-4 rounded-xl text-center
-                               text-base sm:text-lg font-bold text-white outline-none focus:border-violet-500
-                               transition-colors uppercase placeholder:text-white/40"
+                  className="w-full bg-slate-100 border border-slate-300 p-3 sm:p-4 rounded-xl text-center
+                               text-base sm:text-lg font-bold text-slate-900 outline-none focus:border-violet-500
+                               transition-colors uppercase placeholder:text-slate-400"
                   placeholder="YOUR LIE HERE…"
                   aria-label="Enter your bluff answer"
                   value={bluff}
@@ -837,15 +837,15 @@ export default function App({ onBack }) {
               <p className="text-slate-600 text-sm italic">
                 Bluffers are typing…
               </p>
-              <div className="inline-flex items-center gap-2 bg-black/20 px-5 py-3 rounded-2xl border border-white/5">
-                <span className="text-[10px] font-black uppercase text-white/40">
+              <div className="inline-flex items-center gap-2 bg-slate-100 px-5 py-3 rounded-2xl border border-slate-200">
+                <span className="text-[10px] font-black uppercase text-slate-600">
                   Bluffs in:
                 </span>
-                <span className="font-black text-xl text-white tabular-nums">
+                <span className="font-black text-xl text-slate-900 tabular-nums">
                   {bluffsIn} / {bluffsNeeded}
                 </span>
               </div>
-              <p className="text-[10px] text-white/40 uppercase tracking-widest">
+              <p className="text-[10px] text-slate-500 uppercase tracking-widest">
                 You'll vote once all bluffs are in
               </p>
             </div>
@@ -860,7 +860,7 @@ export default function App({ onBack }) {
     return (
       <Screen>
         <div className="fixed inset-0 flex items-center justify-center pointer-events-none select-none">
-          <span className="text-[22vw] font-black text-white/2.5 tracking-tighter">
+          <span className="text-[22vw] font-black text-slate-200 tracking-tighter">
             {room.code}
           </span>
         </div>
@@ -870,10 +870,10 @@ export default function App({ onBack }) {
           className="glass-card w-full max-w-sm relative z-10"
         >
           <div className="text-center mb-6">
-            <p className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-1">
+            <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">
               Room Code
             </p>
-            <p className="text-5xl font-black tracking-widest text-white">
+            <p className="text-5xl font-black tracking-widest text-slate-900">
               {room.code}
             </p>
           </div>
@@ -975,7 +975,7 @@ export default function App({ onBack }) {
                 <PlayCircle size={16} /> Start Game
               </button>
             ) : (
-              <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-400 animate-pulse py-2">
+              <p className="text-center text-[10px] font-black uppercase tracking-widest text-slate-500 animate-pulse py-2">
                 Waiting for host to start…
               </p>
             )}
@@ -1014,13 +1014,13 @@ export default function App({ onBack }) {
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black italic tracking-tighter leading-none mb-2 select-none">
           Bluff<span className="text-violet-500">!</span>
         </h1>
-        <p className="text-[10px] font-black uppercase tracking-widest text-white/40 mb-10">
+        <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-10">
           Bluff · Guess · Outsmart
         </p>
         <input
-          className="w-full bg-transparent border-b-2 border-white/10 pb-3 mb-8 text-center
-                     text-2xl sm:text-3xl font-black uppercase text-white outline-none focus:border-violet-500
-                     transition-colors placeholder:text-white/15"
+          className="w-full bg-transparent border-b-2 border-slate-300 pb-3 mb-8 text-center
+                     text-2xl sm:text-3xl font-black uppercase text-slate-900 outline-none focus:border-violet-500
+                     transition-colors placeholder:text-slate-400"
           placeholder="YOUR NAME"
           aria-label="Enter your player name"
           value={name}
@@ -1033,9 +1033,9 @@ export default function App({ onBack }) {
           </button>
           <div className="flex flex-col gap-2">
             <input
-              className="bg-black/40 border border-white/10 p-3 rounded-xl text-center font-mono
-                         text-xl font-bold text-white outline-none focus:border-white/30
-                         transition-colors uppercase placeholder:text-white/40"
+              className="bg-slate-100 border border-slate-300 p-3 rounded-xl text-center font-mono
+                         text-xl font-bold text-slate-900 outline-none focus:border-violet-500
+                         transition-colors uppercase placeholder:text-slate-400"
               placeholder="0000"
               aria-label="Enter room code to join"
               maxLength={4}
@@ -1107,16 +1107,16 @@ function Screen({ children }) {
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Mono:wght@400;500&display=swap');
         * { font-family: 'Syne', sans-serif; }
         .glass-card {
-          background: rgba(255,255,255,0.03); backdrop-filter: blur(24px);
-          border: 1px solid rgba(255,255,255,0.07); border-radius: 2rem; padding: 2rem;
-          box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 32px 64px rgba(0,0,0,0.4);
+          background: rgba(248,250,252,0.95); backdrop-filter: blur(24px);
+          border: 1px solid rgba(148,163,184,0.35); border-radius: 2rem; padding: 2rem;
+          box-shadow: 0 12px 40px rgba(15,23,42,0.08);
         }
         .btn-primary {
           display: inline-flex; align-items: center; justify-content: center; gap: 6px;
           background: linear-gradient(135deg, #7c3aed, #5b21b6); color: white; border: none;
           border-radius: 0.875rem; padding: 0.875rem 1.25rem; font-size: 0.7rem; font-weight: 900;
           letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
-          box-shadow: 0 4px 24px rgba(124,58,237,0.35);
+          box-shadow: 0 12px 30px rgba(124,58,237,0.22);
         }
         .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(124,58,237,0.45); }
         .btn-primary:active { transform: translateY(0); }
@@ -1142,8 +1142,8 @@ function NumInput({ value, onChange, min = 1, max = 99, ariaLabel }) {
       min={min}
       max={max}
       aria-label={ariaLabel}
-      className="bg-white/10 w-14 text-center rounded-lg p-1 outline-none text-white font-black
-                 text-sm border border-white/10 focus:border-white/30 transition-colors"
+      className="bg-slate-100 w-14 text-center rounded-lg p-1 outline-none text-slate-900 font-black
+                 text-sm border border-slate-300 focus:border-violet-500 transition-colors"
       value={value}
       onChange={(e) => onChange(Number(e.target.value))}
     />
